@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>user's page</title>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+ </head>
+ <body>
+  <div class="container">
+  <nav class="navbar navbar-default ">
+        <div class="navbar-header">
+          
+          <a class="navbar-brand" href="/quotes">Welcome, {{ session['name']}}!</a>
+        </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+      
+    </nav>
+  <div class="row">
+    <h4>Quotable Quotes</h4>
+      <div class="col-md-5">
+      {% for quote in quote_list %}
+        <h4>{{quote['quote']}}</h4>
+        <h6>posted by <a href="/users/{{quote['quote_user_id']}}">{{quote['name']}}</a></h6>
+        <h6>Posted on {{quote['created_on'].strftime('%b %dst %Y')}}</h6>
+        <form action='/addfavorite' method='POST'>{{ quote['quotes_id']}}
+          <input type='hidden' name='quotes_id' value="{{ quote['quotes_id']}}">
+          <input type="submit" value="Add to Favorites">
+        </form>
+        <br>
+   
+      {% endfor %}  
+      </div>  
+  
+    <div class="col-md-offset-2 col-md-4">
+      <h4>Your Favorite quotes:</h4>
+      {% for quote in favorite_quote %}
+      <h4>{{quote['quote']}}</h4>
+      <p>posted by <a href="/users/{{session['id']}}">{{quote['name']}}</a></p>
+      <br>
+      {% endfor %}
+    </div>
+  
+    <div class="col-md-offset-2 col-md-4">
+      <h3>Contribute a Quote:</h3>
+      <form action="/newquote" method="POST">
+        <textarea name="addquote"></textarea><br>
+        <input type="submit" value="Submit Reviews">
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+ </body>
+ </html>
+

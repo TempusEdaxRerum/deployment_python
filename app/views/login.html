@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login and Register</title>
+  <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  </head>
+<body>
+<div class="container">
+	<nav class="navbar navbar-default ">
+        <div class="navbar-header">
+          
+          <a class="navbar-brand" href="/quotes">Welcome!</a>
+        </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/">Sign In</a></li>
+          </ul>
+      
+  </nav>
+  	<div class="row">
+        <div class="col-md-4">
+            <h1>Register</h1>
+            <form action="/register" method="post">
+              <table>
+                <tr>
+                  <td>Name:</td>
+                  <td><input type="text" name="name"></td>
+                </tr>
+                <tr>
+                  <td>Alias:</td>
+                  <td><input type="text" name="alias"></td>
+                </tr>
+                <tr>
+                  <td>Email:</td>
+                  <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                  <td>Password:</td>
+                  <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                  <td>Confirm Password:</td>
+                  <td><input type="password" name="confirm_password"></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td><input type="submit" value="Register"></td>
+                  <tr><td><h6>*Password should be at least 8 characters</h6></td></tr>
+                </tr>
+              </table>
+            </form>
+        </div>
+  	<div class="col-md-3">
+            <h1>Login</h1>
+            <form action="/login" method="post">
+                <table>
+                <tr>
+                  <td>Email:</td>
+                  <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                  <td>Password:</td>
+                  <td><input type="password" name="password"></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td><input type="submit" value="Login"></td>
+                </tr>
+              </table>
+            </form>
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                {% for message in messages %}
+                  <p class='flash'>{{message}}</p>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+          </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

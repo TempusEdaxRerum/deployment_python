@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Book</title>
+    <link rel="stylesheet" href="/static/css/style3.css" type="text/css">
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container">
+  <nav class="navbar navbar-default ">
+        <div class="navbar-header">
+          
+          <a class="navbar-brand" href="/quotes">Welcome, {{ session['name']}}!</a>
+        </div>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+      
+    </nav>
+<div class="container">
+  <div class="col-md-8">
+    {% for user in user_info %}
+ 	<h1>User Alias: {{user['alias']}} </h1>
+ 	<p>Name : {{user['name']}}</p>
+ 	<p>Email : {{user['email']}}</p>
+ 	<p>Total Quotes : {{user['count']}}</p>
+
+ 	<h3>Posted Quotes:</h3>
+ 		<p>{{user['quotes']}}</a></p>
+ 	{% endfor %}
+</div>
+</body>
+</html>
